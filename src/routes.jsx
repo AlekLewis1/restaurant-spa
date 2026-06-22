@@ -1,44 +1,27 @@
 import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./services/useAuth";
 import Home from "./pages/Home.jsx";
 import Restaurants from "./pages/Restaurants.jsx";
 import Chains from "./pages/Chains.jsx";
 import MenuItems from "./pages/MenuItems.jsx";
 import NoMatch from "./pages/NoMatch.jsx";
-import SignIn from "./pages/SignIn.jsx";
-import SignUp from "./pages/SignUp.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Signin from "./pages/auth/signin.jsx";
+import Signout from "./pages/auth/signout.jsx";
+import Signup from "./pages/auth/signup.jsx";
 
 export default function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route
-        path="/restaurants"
-        element={
-          <ProtectedRoute>
-            <Restaurants />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/chains"
-        element={
-          <ProtectedRoute>
-            <Chains />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/menu-items"
-        element={
-          <ProtectedRoute>
-            <MenuItems />
-          </ProtectedRoute>
-        }
-      />
-      <Route path="*" element={<NoMatch />} />
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/restaurants" element={<Restaurants />} />
+        <Route path="/chains" element={<Chains />} />
+        <Route path="/menu-items" element={<MenuItems />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signout" element={<Signout />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
+    </AuthProvider>
   );
 }
