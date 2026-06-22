@@ -1,41 +1,29 @@
-import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../services/useAuth";
 
 export default function Header() {
-  const { user, isAuthenticated, signOut } = useAuth();
-  const navigate = useNavigate();
+  const { isAuthed, user } = useAuth();
 
-  const handleSignOut = () => {
-    signOut();
-    navigate("/signin");
-  };
+  const className = ({ isActive }) =>
+    isActive ? "text-white fw-bold" : "text-white";
 
   return (
     <header className="p-3 bg-dark text-white">
       <nav className="container d-flex gap-3 align-items-center">
-        <Link to="/" className="text-white">Home</Link>
-        <Link to="/restaurants" className="text-white">Restaurants</Link>
-        <Link to="/chains" className="text-white">Chains</Link>
-        <Link to="/menu-items" className="text-white">Menu Items</Link>
+        <NavLink to="/" className={className}>Home</NavLink>
+        <NavLink to="/restaurants" className={className}>Restaurants</NavLink>
+        <NavLink to="/chains" className={className}>Chains</NavLink>
+        <NavLink to="/menu-items" className={className}>Menu Items</NavLink>
         <div className="ms-auto d-flex gap-3 align-items-center">
-          {isAuthenticated ? (
-            <>
-              <span className="text-white-50">Hello, {user?.username}</span>
-              <button
-                className="btn btn-outline-light btn-sm"
-                onClick={handleSignOut}
-              >
-                Sign Out
-              </button>
-            </>
-          ) : (
-            <>
-              <Link to="/signin" className="text-white">Sign In</Link>
-              <Link to="/signup" className="text-white">Sign Up</Link>
-            </>
-          )}
+          {isAuthed
+            ? <NavLink to="/signout" className={className}>Sign Out</NavLink>
+            : <NavLink to="/signin" className={className}>Sign In / Sign Up</NavLink>
+          }
         </div>
       </nav>
+      {isAuthed && user ? (
+        <div className="container text-end text-white-50">Welcome {user.name}!</div>
+      ) : ""}
     </header>
   );
 }
