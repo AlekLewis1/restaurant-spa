@@ -1,4 +1,4 @@
-import {useAuth} from "../../services/useAuth";
+import {useAuth} from "../../src/services/useAuth.jsx";
 import {useEffect} from 'react';
 
 const Signout = () => {
@@ -12,13 +12,13 @@ const Signout = () => {
     return (
         <>
             <div className="main-heading">
-                <div className="container">Authorization</div>
+                <div className="container">Have a good day!</div>
             </div>
             <div className="sub-heading">
-                <div className="container">Sign Out</div>
+                <div className="container">You have signed out.</div>
             </div>
             <div className="main-content container">
-                Thank you for your visit. You have signed out.
+                Thank you for your visit.
             </div>
         </>
     );

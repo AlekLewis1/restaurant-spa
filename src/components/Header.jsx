@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../services/useAuth";
+import { useAuth } from "../src/services/useAuth.jsx";
+import {Navbar, Nav, Container} from "react-bootstrap";
+import RestaurantChains from "../pages/restaurantChains/restaurantChains.jsx";
 
-export default function Header() {
-  const { isAuthed, user } = useAuth();
+const Header = () => {
+  const {isAuthed, user} = useAuth();
 
   const className = ({ isActive }) =>
     isActive ? "text-white fw-bold" : "text-white";
@@ -11,9 +13,9 @@ export default function Header() {
     <header className="p-3 bg-dark text-white">
       <nav className="container d-flex gap-3 align-items-center">
         <NavLink to="/" className={className}>Home</NavLink>
-        <NavLink to="/restaurants" className={className}>Restaurants</NavLink>
-        <NavLink to="/chains" className={className}>Chains</NavLink>
-        <NavLink to="/menu-items" className={className}>Menu Items</NavLink>
+
+        <NavLink to="/restaurantChains" className={className}>Restaurant Chains</NavLink>
+
         <div className="ms-auto d-flex gap-3 align-items-center">
           {isAuthed
             ? <NavLink to="/signout" className={className}>Sign Out</NavLink>
@@ -26,4 +28,6 @@ export default function Header() {
       ) : ""}
     </header>
   );
-}
+};
+export default Header;
+

@@ -1,14 +1,14 @@
 import {Button} from 'react-bootstrap';
 import {useEffect, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import {useAuth} from "../../services/useAuth";
+import {useAuth} from "/src/src/services/useAuth.jsx";
 import "/src/assets/css/auth.css";
 
 const Signup = () => {
     const [account, setAccount] = useState({role: 4}); // default role 4: basic user
     let {isAuthed, isLoading, error, isSignup, user, signup, login} = useAuth();
     let navigate = useNavigate();
-    let from = '/signup';
+    let from = '/';
 
     // create a user account by calling the signup function
     const createAccount = (e) => {
@@ -38,6 +38,29 @@ const Signup = () => {
                 <h3>Sign Up</h3>
                 <form onSubmit={createAccount}>
                     <div className="form-group">
+
+                        <div>
+                            <label htmlFor="name">Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <label htmlFor="email">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
+
                         <div>
                             <label htmlFor="username">Username</label>
                             <input
@@ -48,6 +71,8 @@ const Signup = () => {
                                 required
                             />
                         </div>
+
+
                         <div>
                             <label htmlFor="password">Password</label>
                             <input
@@ -58,6 +83,8 @@ const Signup = () => {
                                 required
                             />
                         </div>
+
+
                         <div className="form-button">
                             <Button type="submit" disabled={isLoading}>
                                 {isLoading ? "Creating account..." : "Sign Up"}

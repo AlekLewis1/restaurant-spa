@@ -6,7 +6,7 @@ Description: This script creates a React hook for user authentication. It uses u
 */
 
 import {useState, createContext, useContext} from "react";
-import {settings} from "../config/config";
+import {settings} from "/src/config/config.jsx";
 
 // Create the context
 const AuthContext = createContext(null);

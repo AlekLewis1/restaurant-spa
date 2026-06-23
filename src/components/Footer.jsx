@@ -1,7 +1,19 @@
-export default function Footer() {
-  return (
-    <footer className="text-center p-3 bg-light mt-5">
-      <p>Restaurant SPA © 2026</p>
-    </footer>
-  );
-}
+/*
+Name: Shawn Schafer
+Date: 06/20/2026
+File: Footer.js
+Description: create a common page footer
+*/
+
+const Footer = () => {
+    const year = new Date().getFullYear();  //determine the current year with JavaScript
+    return (
+        <footer>
+            <div className="container">
+                <span>&copy;Restaurant API. 2017-{year}</span>
+            </div>
+        </footer>
+    );
+};
+
+export default Footer;

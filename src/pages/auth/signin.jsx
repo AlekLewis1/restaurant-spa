@@ -1,14 +1,14 @@
 import {Button} from 'react-bootstrap';
 import {useState} from 'react';
 import {useLocation, useNavigate, Link} from "react-router-dom";
-import {useAuth} from "../../services/useAuth";
+import {useAuth} from "../../src/services/useAuth.jsx";
 import "/src/assets/css/auth.css";
 
 const Signin = () => {
     let location = useLocation();
     let navigate = useNavigate();
     let [account, setAccount] = useState(null);
-    let from = location.state?.from?.pathname || "/signin";
+    let from = location.state?.from?.pathname || "/";
     let {isAuthed, login, isLoading, error} = useAuth();
 
     // verify a user's username and password by calling the login function
