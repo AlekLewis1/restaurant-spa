@@ -20,6 +20,7 @@ const Header = () => {
           {isAuthed
             ? <NavLink to="/signout" className={className}>Sign Out</NavLink>
             : <NavLink to="/signin" className={className}>Sign In / Sign Up</NavLink>
+            <NavLink to="/amenities" className={className}>Amenities</NavLink>
           }
         </div>
       </nav>
