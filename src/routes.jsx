@@ -12,6 +12,8 @@ import Signup from "./pages/auth/signup.jsx";
 import RestaurantChains from "./pages/restaurantChains/restaurantChains.jsx";
 import Locations from "./pages/locations/locations.jsx";
 import RequireAuth from "./components/RequireAuth.jsx";
+import Amenities from "./pages/amenities/amenities";
+
 
 const AppRoutes = () => {
   return (
