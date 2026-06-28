@@ -31,7 +31,12 @@ const AppRoutes = () => {
                     </RequireAuth>
                   }
                 />
-
+                <Route path="/amenities" element={
+                  <RequireAuth>
+                    <Amenities />
+                </RequireAuth>
+                  
+                } />
                 <Route path="/restaurantChains" element={
                   <RequireAuth>
                     <RestaurantChains />
