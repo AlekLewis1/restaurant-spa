@@ -1,8 +1,9 @@
+import Restaurants from "./pages/restaurants/Restaurants.jsx";
+import Restaurant from "./pages/restaurants/Restaurant.jsx";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import { AuthProvider } from "./src/services/useAuth.jsx";
 import Home from "./pages/Home.jsx";
 import Layout from "./components/Layout.jsx";
-import Restaurants from "./pages/Restaurants.jsx";
 import MenuItems from "./pages/MenuItems.jsx";
 import NoMatch from "./pages/NoMatch.jsx";
 import Signin from "./pages/auth/signin.jsx";
@@ -20,13 +21,30 @@ const AppRoutes = () => {
             <Routes>
               <Route path="/" element={<Layout />}>
                 <Route path="/" element={<Home />} />
-                <Route path="/restaurants" element={<Restaurants />} />
+                <Route
+                  path="/restaurants"
+                  element={
+                    <RequireAuth>
+                       <Restaurants />
+                    </RequireAuth>
+                  }
+                />
+
                 <Route path="/restaurantChains" element={
                   <RequireAuth>
                     <RestaurantChains />
                   </RequireAuth>
+                  
                 } />
-
+                <Route
+                  path="/restaurants/:restaurantId"
+                  element={
+                    <RequireAuth>
+                      <Restaurant />
+                    </RequireAuth>
+                  }
+                />
+                
                 <Route path="/restaurantChains/:chainId/locations" element={
                   <RequireAuth>
                     <Locations />
